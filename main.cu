@@ -103,7 +103,6 @@ void run_dense( csc485b::a2::edge_t const * d_edges, std::size_t n, std::size_t 
     a2::DenseGraph d_dg{ n, d_matrix };
 
     run( d_dg, d_edges, m );
-
     
     // check output?
     std::vector< a2::node_t > host_matrix( d_dg.matrix_size() );
@@ -176,6 +175,7 @@ int main()
     std::size_t constexpr expected_degree = n >> 1;
 
     a2::edge_list_t const graph = a2::generate_graph( n, n * expected_degree );
+    //a2::edge_list_t const graph = a2::generate_specific_graph();
     std::size_t const m = graph.size();
 
     // lazily echo out input graph
@@ -188,7 +188,6 @@ int main()
     a2::edge_t * d_edges;
     cudaMalloc( (void**)&d_edges, sizeof( a2::edge_t ) * m );
     cudaMemcpyAsync( d_edges, graph.data(), sizeof( a2::edge_t ) * m, cudaMemcpyHostToDevice );
-
     // run your code!
     run_dense ( d_edges, n, m );
     cudaDeviceSynchronize();
