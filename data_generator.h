@@ -13,6 +13,18 @@
 namespace csc485b {
 namespace a2 {
 
+
+edge_list_t generate_specific_graph(){
+    edge_list_t edges;
+    edges.reserve( 6 );
+    edges.push_back( make_int2( 0, 1 ));
+    edges.push_back( make_int2( 1, 0 ));
+    edges.push_back( make_int2( 0, 2 ));
+    edges.push_back( make_int2( 2, 0 ));
+    edges.push_back( make_int2( 2, 3 ));
+    edges.push_back( make_int2( 3, 2 ));
+    return edges;
+}
 /**
  * Generates and returns a vector of random edges
  * for a graph `G=(V,E)` with `n=|V|=n` and expected `m=|E|`.
